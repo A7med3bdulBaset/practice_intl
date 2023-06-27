@@ -2,6 +2,7 @@
 // Happy coding!
 
 import Link from "next/link"
+import { getTranslate, Locale } from "@i18n"
 import { GithubIcon } from "lucide-react"
 
 import { siteConfig } from "@/config/site"
@@ -10,7 +11,15 @@ import ThemeToggle from "@/components/ThemeToggle"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 
-export default function IndexPage() {
+interface Props {
+	params: {
+		lang: Locale
+	}
+}
+
+export default async function IndexPage({ params: { lang } }: Props) {
+	const t = await getTranslate(lang)
+
 	return (
 		<main className="container grid items-center gap-6 space-y-4 pb-8 pt-6 md:py-10">
 			<div className="space-y-2">
@@ -28,7 +37,9 @@ export default function IndexPage() {
 				</div>
 			</div>
 			<div className="space-y-2">
-				<h2 className="text-3xl font-semibold">Included Features:</h2>
+				<h2 className="text-3xl font-semibold">
+					{t.index.included_features}:
+				</h2>
 				<ul className="list-inside ps-8 marker:text-2xl marker:text-primary-500/50">
 					<li>Next.js 13.4: App Router and Server Actions</li>
 					<li>Typescript</li>
