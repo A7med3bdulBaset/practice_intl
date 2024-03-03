@@ -1,9 +1,4 @@
 
-try {
-	if (window) throw new Error("Cannot use in client side")
-} catch {
-
-}
 
 export const i18n = {
 	locales: ["en", "ar", "fr"],
